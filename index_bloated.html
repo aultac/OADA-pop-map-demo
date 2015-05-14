@@ -1,21 +1,17 @@
 <!DOCTYPE html>
 <html>
 <head>
-  <title>OADA Pop-Map Demo</title>
-
   <meta charset=utf-8 />
-  <meta name='viewport' content='width=device-width, intial=scale=1.0' />
+  <title>OADA Pop-Map Demo</title>
+  <meta name='viewport' content='initial-scale=1,maximum-scale=1,user-scalable=no' />
   <!-- leaflet includes -->
   <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
   <!-- styling - put in another file later -->
-  <style type="text/css">
-    .map {
-      position: absolute;
-      left: 0;
-      right: 0;
-      bottom: 0;
-      top: 0;
-    }
+  <style>
+    body {margin: 0; padding: 0;}
+    #map {position:absolute; left:0; right:0; top:0; bottom:0;}
+    #jsx {width:100%; height:25%;}
+    #dom {width:100%; height:25%;}
   </style>
 </head>
 <body>
@@ -24,7 +20,9 @@
   <script src="http://fb.me/JSXTransformer-0.11.1.js"></script>
   <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
 
-  <div id='map'></div>
+    <div id='jsx'></div>
+    <div id='dom'></div>
+    <div className='map' id='map'></div>
 
 <script type="text/jsx">
     /** @jsx React.DOM */
@@ -56,7 +54,35 @@
         return (<div className="map"></div>);
       }
     });
+    
+    var MessageBoxJSX = React.createClass({
+      render: function() {
+        return (
+          <div className="container">
+            <h1>Hello, World! From JSX</h1>
+            <SubMessage />
+          </div>
+        );
+      }
+    });
 
+    var MessageBoxDOM = React.createClass({
+      render: function() {
+        return React.DOM.div({
+           className: 'container'},
+           React.DOM.h1(null, 'Hello, World! From DOM'),
+           SubMessage(null)
+           );
+      }
+    });
+    
+    var SubMessage = React.createClass({
+      render: function() {
+        return (
+          <small> Its good to see you </small>
+        );
+      }
+    });
     
     var reactComponentMap = React.renderComponent(
       <Map lat="60.0" lon="10.0" zoom="10"/>,
@@ -64,6 +90,19 @@
       function() {
         console.log('map react component callback');
       });
+
+    
+    var reactComponentJSX = React.renderComponent(
+      <MessageBoxJSX/>,
+      document.getElementById('jsx'),
+      function() {
+        console.log('callback');
+      });
+
+    var reactComponentDOM = React.renderComponent(
+      MessageBoxDOM(null),
+      document.getElementById('dom')
+      );
 
   </script>
 
