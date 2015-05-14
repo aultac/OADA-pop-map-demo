@@ -5,8 +5,15 @@
 
   <meta charset=utf-8 />
   <meta name='viewport' content='width=device-width, intial=scale=1.0' />
-  <!-- leaflet includes -->
+  
+  <!-- react.js scripts -->
+  <script src="http://fb.me/react-0.11.1.js"></script>
+  <script src="http://fb.me/JSXTransformer-0.11.1.js"></script>
+
+  <!-- leaflet scripts and styles -->
+  <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
   <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
+
   <!-- styling - put in another file later -->
   <style type="text/css">
     .map {
@@ -15,16 +22,18 @@
       right: 0;
       bottom: 0;
       top: 0;
+      height: 50%;
+    }
+    .table {
+      position: absolute;
+      top: 50%;
     }
   </style>
 </head>
 <body>
-  <!-- react.js includes -->
-  <script src="http://fb.me/react-0.11.1.js"></script>
-  <script src="http://fb.me/JSXTransformer-0.11.1.js"></script>
-  <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
 
   <div id='map'></div>
+  <div id='table'></div>
 
 <script type="text/jsx">
     /** @jsx React.DOM */
