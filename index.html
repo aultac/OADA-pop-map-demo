@@ -78,15 +78,13 @@
       
       getOrx: function(uri, auth, id) {
         var orx_response = false;
-        //TODO: undo harcoded value:
-        id = "f7593285-ebee-4617-a261-59b4b87dd5da";
-        /*
+        
         $.ajax({
           url: uri + "/resources/" + id,
           async: false,
           headers: {
-            'Authorization', auth
-          }
+            'Authorization': auth
+          },
           success: function(response) {
             console.log(response);
             if(response != null) {
@@ -97,19 +95,20 @@
             alert("Bad Domain");
           }
         });
-        */
-        orx_response = testJSON;
+        
         return orx_response;
       },
       
       getChosenPrescription: function(uri, auth) {
         var all_prescriptions = this.getAllPrescriptions(uri, auth);
-        var prescription = this.selectPrescription(all_prescriptions, function(presc) {
+        var presc_name = this.selectPrescription(all_prescriptions, function(presc) {
           //TODO: hardcode value used -- problems with syncronous dialog box selector
           //return all_prescriptions[presc];
         });
         
-        return all_prescriptions["43472377-6631-4eff-89cb-6ac18e72c45d"];
+        //TODO:
+        presc_name = "7016edbf-7a41-4e56-b287-7137f1ec48d0";
+        return all_prescriptions[presc_name];
 
       },
       
@@ -120,7 +119,7 @@
         for(i = 0; i < _.size(list); i++) {
           var name = _.keys(list)[i];
           //var name = list_names[i];
-          //TODO: new line characters don't actually make new lines
+          //TODO: new line characters and/or <br /> don't actually make new lines
           buttons[i] = {
             text: "Name = " + name + "\n" +
                  "ID = " + list[name]._id + "\n" +
@@ -144,29 +143,19 @@
       getAllPrescriptions: function(uri, auth) {
         var list;
         
-        //TODO: fix hardcoded values to work with ajax command below -- problem with using Authorization over ajax. need real username and pass
-        var hardcodedResponse = {"_rev":"12-9572628b3bd1b238619a702c6c068a34","planting":{"prescriptions":{"name":"planting.prescriptions","list":{"faa71765-3bee-40ce-b444-8f6d770e2766":{"_rev":"0-0","_id":"509bed2f-e203-457c-8f0f-f52098b99549"},"8d156d7a-0031-4989-a825-6ce00cd91f1c":{"_rev":"0-0","_id":"1b01fb5f-2032-4bee-808f-61ce06124575"},"87728c24-9c38-462d-9738-0209de455577":{"_rev":"0-0","_id":"0ef0512f-2997-4eba-bb97-080a788cc3b2"},"39f6b130-3020-487d-95be-b55d450d30e4":{"_rev":"0-0","_id":"f57a245f-b03f-47bd-8c64-ee415921719c"},"79dec035-ac94-4bdb-8b38-03cb61809e49":{"_rev":"0-0","_id":"b13473e9-ff5e-49d7-9084-57bc667ac8f2"},"524b38cc-2677-423c-9369-8b5f010c7120":{"_rev":"0-0","_id":"071a9ce1-44da-47b1-92d4-53a201cb78a2"},"453636e5-964d-475a-a351-110f1f233638":{"_rev":"0-0","_id":"0172c5e5-78d2-43bc-8713-e0dc19690f5c"},"2a101291-9f86-4642-95b0-fdfccd6e14f5":{"_rev":"0-0","_id":"6ad8aea6-73e1-4e39-bfa2-bfec047bc803"},"4d49b59c-bd91-4efc-9e3f-808644649110":{"_rev":"0-0","_id":"dda57717-bfda-4ca5-a785-3ca524576095"},"9e32f3fe-3aeb-4d14-9737-1aab6027e9a6":{"_rev":"0-0","_id":"62b889a1-b61a-46fe-a9bc-24fe62809c51"},"9f5945ae-fe61-45fa-bc43-77fe63bf0026":{"_rev":"0-0","_id":"10d2089a-0166-4085-a8dc-c089b25450d5"},"43472377-6631-4eff-89cb-6ac18e72c45d":{"_rev":"0-0","_id":"f7593285-ebee-4617-a261-59b4b87dd5da"}}}},"_id":"0346e1ca-24c1-4cb7-829f-f82605dfecc0"};
-        
-        list = hardcodedResponse.planting.prescriptions.list;
-        
-        /*
         $.ajax({
           url: uri + "/bookmarks/",
-          async: true,
-          dataType: 'jsonp',
+          async: false,
           headers: {
             "Authorization": "Bearer SJKF9jf309"
           },
           success: function(response) {
-            console.log(response);
-            console.log(response.planting.prescriptions.list);
             list = response.planting.prescriptions.list;
           },
           error: function(error) {
-            
+           console.log("error - ajax for all prescriptions failed");
           }
         });
-        */
         
         return list;
       },
