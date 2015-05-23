@@ -67,19 +67,50 @@
         var url = this.getDomainPrompt() + '/.well-known/oada-configuration';
         var base_uri = this.getBaseUri(url);
         var chosen_prescription = this.getChosenPrescription(base_uri, authString);
+        var orx = this.getOrx(base_uri, authString, chosen_prescription._id);
         
         return {
           baseUri: base_uri,
-          prescId: chosen_prescripton._id
+          prescId: chosen_prescription._id,
+          orx: orx
         };
+      },
+      
+      getOrx: function(uri, auth, id) {
+        var orx_response = false;
+        //TODO: undo harcoded value:
+        id = "f7593285-ebee-4617-a261-59b4b87dd5da";
+        /*
+        $.ajax({
+          url: uri + "/resources/" + id,
+          async: false,
+          headers: {
+            'Authorization', auth
+          }
+          success: function(response) {
+            console.log(response);
+            if(response != null) {
+              orx_response = response;
+          } else { this.error(); }
+          },
+          error: function(error) {
+            alert("Bad Domain");
+          }
+        });
+        */
+        orx_response = testJSON;
+        return orx_response;
       },
       
       getChosenPrescription: function(uri, auth) {
         var all_prescriptions = this.getAllPrescriptions(uri, auth);
-        var prescription = this.selectPrescription(all_prescriptions, function(prescription) {
-          console.log(prescription);
-          return prescription;
+        var prescription = this.selectPrescription(all_prescriptions, function(presc) {
+          //TODO: hardcode value used -- problems with syncronous dialog box selector
+          //return all_prescriptions[presc];
         });
+        
+        return all_prescriptions["43472377-6631-4eff-89cb-6ac18e72c45d"];
+
       },
       
       selectPrescription: function(list, callbackAfterSelect) {
@@ -87,14 +118,16 @@
         var list_names = _.keys(list);
 
         for(i = 0; i < _.size(list); i++) {
-          var name = list_names[i];
+          var name = _.keys(list)[i];
+          //var name = list_names[i];
+          //TODO: new line characters don't actually make new lines
           buttons[i] = {
             text: "Name = " + name + "\n" +
                  "ID = " + list[name]._id + "\n" +
                  "Rev = " + list[name]._rev,
             click: function() {
-              //TODO: decide to return name or list[name]
               $(this).dialog("close");
+              //TODO: fix this always returns last item not the selected one
               return callbackAfterSelect(list[name]);
             }
           }
@@ -134,6 +167,7 @@
           }
         });
         */
+        
         return list;
       },
       
