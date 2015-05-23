@@ -12,15 +12,12 @@
   <!-- jquery script -->
   <script src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="http://code.jquery.com/ui/1.11.1/jquery-ui.min.js"></script>
-<link rel="stylesheet" href="https://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css" />
+  <link rel="stylesheet" href="https://code.jquery.com/ui/1.11.1/themes/smoothness/jquery-ui.css" />
   <!-- lodash script -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/lodash.js/2.4.1/lodash.min.js"></script>
   <!-- leaflet scripts and styles -->
   <script src="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.js"></script>
   <link rel="stylesheet" href="http://cdn.leafletjs.com/leaflet-0.7.3/leaflet.css" />
-  <!-- debugging and testing scripts -->
-  <!-- TODO: remove -->
-  <script src="test/testJSON.js"></script>
 
   <!-- styling - TODO: put in another file -->
   <style type="text/css">
@@ -86,7 +83,6 @@
             'Authorization': auth
           },
           success: function(response) {
-            console.log(response);
             if(response != null) {
               orx_response = response;
           } else { this.error(); }
@@ -153,7 +149,7 @@
             list = response.planting.prescriptions.list;
           },
           error: function(error) {
-           console.log("error - ajax for all prescriptions failed");
+           alert("error - could not retreive list of available prescriptions");
           }
         });
         
@@ -164,7 +160,8 @@
         var domain = prompt("Please enter the OADA Domain", "http://52.4.148.83:3000");
         
         //TODO: Do some checks on whether this domain is valid
-        //TODO: Format it correctly based on starting with "http://"" and ending with "/"
+        //TODO: Format user input correctly based on whether it already is
+        //                    starting with "http://"" and ending with "/"
         
         return domain;
       },
@@ -188,10 +185,6 @@
         return uri;
       },
       
-      componentWillMount: function() {
-        //TODO: Have user select from the list of prescriptions
-      },
-      
       //TODO: Remove id's of Map and Table and replace with Ref
       render: function () {
         return (
@@ -200,7 +193,7 @@
               <Map data={this.state.orx} />
             </div>
             <div className="table">
-              <Table/>
+              <Table data={this.state.orx}/>
             </div>
           </div>
         );
@@ -219,7 +212,6 @@
             //TODO: change the colors to be randomly separated and updated based on the # of features
             //TODO: Should change the feature properties to be the population and zone number -- show this in the pop-up instead of the "description"
             onEachFeature: function (feature, layer) {
-              //console.log(this);
               var zone = feature.properties.zone;
               layer.bindPopup("zone: " + zone + " with pop: " + data.zones[zone].population.value);
             }
@@ -254,15 +246,16 @@
     /* Table React Component */
     var Table = React.createClass({
       getInitialState: function() {
+        var orxData = this.props.data;
         var tabledata = [];
-        var length = _.size(testJSON.zones);
+        var length = _.size(orxData.zones);
         for(i = 0; i < length; i++) {
           
-          var name = _.keys(testJSON.zones)[i];
+          var name = _.keys(orxData.zones)[i];
           
-          var population = testJSON.zones[name].population.value;
+          var population = orxData.zones[name].population.value;
           if(name == "default") {
-            population = testJSON.zones[name].population.default.value;
+            population = orxData.zones[name].population.default.value;
           }
           
           tabledata[i] = {name, population};
