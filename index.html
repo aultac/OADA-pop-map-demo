@@ -208,7 +208,7 @@
         return (
           <div>
             <div className="map">
-              <Map data={testJSON} />
+              <Map data={this.state.orx} />
             </div>
             <div className="table">
               <Table/>
@@ -242,17 +242,12 @@
         return map;
       },
       
-      loadData: function() {
-        //TODO: Change this to get the data from the server instead of from the file
-        return testJSON;
-      },
-      
       getInitialState: function() {
         return null;
       },
 
       componentDidMount: function() {
-        data = this.loadData();
+        data = this.props.data;
         var geojson = data.geojson;
         
         if(this.props.createMap) {
@@ -290,7 +285,7 @@
       render: function() {
         var rows = [];
         this.state.zones.forEach(function(zone) {
-            rows.push(<ZoneTableRow Zone={zone.name} Population={zone.population} />);
+            rows.push(<ZoneTableRow Zone={zone.name} Population={zone.population} key={zone.name}/>);
         }.bind(this));
         
         return (
