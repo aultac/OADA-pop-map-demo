@@ -185,15 +185,25 @@
         return uri;
       },
       
-      //TODO: Remove id's of Map and Table and replace with Ref
+      tableValueChanged: function(zone, updatedValue) {
+        console.log("table value chagned");
+        var newOrx = this.state.orx;
+        newOrx.zones[zone].population.value = updatedValue;
+        this.setState({
+          orx: newOrx
+        });
+        this.forceUpdate();
+      },
+      
       render: function () {
+        console.log("container render");
         return (
           <div>
             <div className="map">
-              <Map data={this.state.orx} />
+              <Map ref='myMap' data={this.state.orx} />
             </div>
             <div className="table">
-              <Table data={this.state.orx}/>
+              <Table ref='myTable' data={this.state.orx} onTableChange={this.tableValueChanged}/>
             </div>
           </div>
         );
@@ -202,9 +212,9 @@
     
     /* React Map component */
     var Map = React.createClass({
-      createMap: function(element, data) {
-        var geojson = data.geojson;
+      createMap: function(element, geojson) {
         //TODO: Figure out what this is doing and setup with our own open street map
+        var orx = this.props.data;
         var tiles = L.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
           attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
           });
@@ -213,7 +223,8 @@
             //TODO: Should change the feature properties to be the population and zone number -- show this in the pop-up instead of the "description"
             onEachFeature: function (feature, layer) {
               var zone = feature.properties.zone;
-              layer.bindPopup("zone: " + zone + " with pop: " + data.zones[zone].population.value);
+              var pop = orx.zones[zone].population.value;
+              layer.bindPopup("zone: " + zone + " with pop: " + pop);
             }
         });
         map = L.map(element);
@@ -228,13 +239,12 @@
       },
 
       componentDidMount: function() {
-        data = this.props.data;
-        var geojson = data.geojson;
-        
+        var geojson = this.props.data.geojson;
+
         if(this.props.createMap) {
-          this.map = this.props.createMap(this.getDOMNode(), data);
+          this.map = this.props.createMap(this.getDOMNode(), geojson);
         } else {
-          this.map = this.createMap(this.getDOMNode(), data);
+          this.map = this.createMap(this.getDOMNode(), geojson);
         }
       },
       
@@ -245,9 +255,13 @@
     
     /* Table React Component */
     var Table = React.createClass({
-      getInitialState: function() {
+      onTableChange: function(zone, updatedPopulation) {
+        this.props.onTableChange(zone, updatedPopulation);
+      },
+      
+      render: function() {
         var orxData = this.props.data;
-        var tabledata = [];
+        var zones = [];
         var length = _.size(orxData.zones);
         for(i = 0; i < length; i++) {
           
@@ -258,40 +272,46 @@
             population = orxData.zones[name].population.default.value;
           }
           
-          tabledata[i] = {name, population};
+          zones[i] = {name, population};
         }
-        return {zones: tabledata};
-      },
-      
-      //TODO: add "key" value to array as required by React.js -- (key = zone.name ?)
-      render: function() {
+        
         var rows = [];
-        this.state.zones.forEach(function(zone) {
-            rows.push(<ZoneTableRow Zone={zone.name} Population={zone.population} key={zone.name}/>);
+        
+        zones.forEach(function(zone) {
+            rows.push(<ZoneTableRow Zone={zone.name} Population={zone.population} key={zone.name} onRowChange={this.onTableChange}/>);
         }.bind(this));
         
         return (
-            <table>
-                <thead>
-                    <tr>
-                        <th>Zone</th>
-                        <th>Population</th>
-                    </tr>
-                </thead>
-                <tbody>{rows}</tbody>
-            </table>
+          <div>
+            <div>
+              <h3>Zone</h3>
+              <h3>Population</h3>
+              <br />
+            </div>
+            <div>
+              {rows}
+            </div>
+          </div>
           );
         }
         
       });
+      
       //NOTE: contentEditable is a HTML5 feature. This will require more code on older HTML versioned browsers
       var ZoneTableRow = React.createClass({
+        
+        onRowChange: function(e) {
+          var zone = this.props.Zone;
+          var updatedPop = e.target.value;
+          this.props.onRowChange(zone, updatedPop);
+        },
+        
         render: function() {
           return (
-              <tr>
-                <td>{this.props.Zone}</td>
-                <td contentEditable='true'>{this.props.Population}</td>
-              </tr>
+              <div>
+                <p>{this.props.Zone}</p>
+                <input onChange={this.onRowChange} type="number" key={this.props.Zone} value={this.props.Population} />
+              </div>
             );
         }
       });
