@@ -186,7 +186,6 @@
       },
       
       tableValueChanged: function(zone, updatedValue) {
-        console.log("table value chagned");
         var newOrx = this.state.orx;
         newOrx.zones[zone].population.value = updatedValue;
         this.setState({
@@ -196,7 +195,6 @@
       },
       
       render: function () {
-        console.log("container render");
         return (
           <div>
             <div className="map">
