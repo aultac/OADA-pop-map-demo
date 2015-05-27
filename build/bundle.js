@@ -33367,6 +33367,8 @@
 
 	__webpack_require__(171);
 
+	var feature_layers = [];
+
 	/* React Map component */
 	module.exports = React.createClass({displayName: "module.exports",
 	  createMap: function(element, geojson) {
@@ -33380,7 +33382,8 @@
 	      onEachFeature: function (feature, layer) {
 	        var zone = feature.properties.zone;
 	        var pop = orx.zones[zone].population.value;
-	        layer.bindPopup("zone: " + zone + " with pop: " + pop);
+	        feature_layers.push({ zone: zone, population: pop, layer: layer});
+	        layer.bindPopup("Zone: " + zone + " with Pop: " + pop);
 	      },
 	      // TODO: This is pretty hacky. Auto generate colors from zone number ?
 	      style: function(feature) {
@@ -33440,8 +33443,18 @@
 	  },
 
 	  render: function() {
+	    var self = this; 
+	    // Loop through all the zones on the map and see if popup needs to be updated:
+	    _.each(feature_layers, function(f) {
+	      var new_pop = _.get(self, 'props.data.zones['+f.zone+'].population.value');
+	      if (new_pop !== f.population) {
+	        console.log('Changing popup on zone ' + f.zone + ' from ' + f.population + ' to ' + new_pop);
+	        f.population = new_pop;
+	        f.layer.bindPopup("Zone: " + f.zone + " with Pop: " + f.population);
+	      }
+	    });
 	    return (React.createElement("div", {id: "map"}));
-	  }
+	  },
 	});
 
 
