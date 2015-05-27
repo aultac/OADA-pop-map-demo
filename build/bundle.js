@@ -33212,7 +33212,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(163)();
-	exports.push([module.id, "#map {\n  position: absolute;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  top: 0;\n  height: 150%;\n  float: left;\n  z-index: -1;\n}\n\n\n", ""]);
+	exports.push([module.id, "@media screen and (max-width: 700px) {\n  #map {\n    position: absolute;\n    left: 0;\n    right: 0;\n    bottom: 0;\n    top: 0;\n    height: 50%;\n    float: left;\n    z-index: -1;\n  }\n}\n\n@media screen and (min-width: 701px) {\n  #map {\n    position: absolute;\n    left: 0;\n    right: 0;\n    bottom: 0;\n    top: 0;\n    height: 50%;\n    float: left;\n    z-index: -1;\n  }\n}\n\n\n\n\n", ""]);
 
 /***/ },
 /* 169 */
