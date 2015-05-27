@@ -48,7 +48,7 @@ var AppContainer = React.createClass ({
       domain = 'http://52.4.148.83:3000';  // oada demo server
     }
     if (!domain.match(/^http/)) {
-      domain = "http://"+domain
+      domain = "https://"+domain
     }
     var oada_base_uri = "";
     return new xhr_promise().send({
