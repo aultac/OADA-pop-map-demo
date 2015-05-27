@@ -80,14 +80,14 @@
 	      React.createElement("div", null, 
 	        React.createElement("div", {className: "map"}, 
 	          React.createElement(Map, {ref: "myMap", data: this.state.cur_rx})
-	        ), 
-	        "//", React.createElement("div", {className: "table"}, 
-	        "//  ", React.createElement(Table, {ref: "myTable", data: this.state.cur_rx, onTableChange: this.tableValueChanged}), 
-	        "//")
+	        )
 	      )
 	    );
 	  },
 	});
+	/*        <div className="table">
+	          <Table ref='myTable' data={this.state.cur_rx} onTableChange={this.tableValueChanged}/>
+	        </div> */
 
 
 	React.render(
