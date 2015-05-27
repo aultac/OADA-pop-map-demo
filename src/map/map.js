@@ -13,12 +13,46 @@ module.exports = React.createClass({
       attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
     });
     var geomap = leaflet.geoJson(geojson, {
-      //TODO: change the colors to be randomly separated and updated based on the # of features
       //TODO: Should change the feature properties to be the population and zone number -- show this in the pop-up instead of the "description"
       onEachFeature: function (feature, layer) {
         var zone = feature.properties.zone;
         var pop = orx.zones[zone].population.value;
         layer.bindPopup("zone: " + zone + " with pop: " + pop);
+      },
+      // TODO: This is pretty hacky. Auto generate colors from zone number ?
+      style: function(feature) {
+        var props = {};
+        switch(feature.properties.zone) {
+          case "default":
+            props.color = '#FFA07A';
+          break;
+
+          case "1":
+            props.color = '#FF8C00';
+          break;
+
+          case "2":
+            props.color = '#87CEEB';
+          break;
+
+          case "3":
+            props.color = '#008000';
+          break;
+
+          case "4":
+            props.color = '#8B4513';
+          break;
+
+          case "5":
+            props.color = '#8B0000';
+          break;
+
+          case "6":
+            props.color = '#808080';
+          break;
+        }
+
+        return props;
       }
     });
     map = leaflet.map(element);
