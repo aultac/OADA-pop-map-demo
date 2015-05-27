@@ -11,7 +11,6 @@ module.exports = React.createClass({
   },
   
   render: function() {
-    console.log('rendering table...');
     var orxData = this.props.data;
     var zones = [];
     var length = _.size(orxData.zones);
