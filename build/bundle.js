@@ -47,11 +47,11 @@
 	var React = __webpack_require__(4);
 	var Table = __webpack_require__(159);
 	var Map = __webpack_require__(169);
-	var Navbar = __webpack_require__(170);
+	var Navbar = __webpack_require__(173);
 	var Promise = __webpack_require__(1);
-	var xhr_promise = __webpack_require__(173);
+	var xhr_promise = __webpack_require__(176);
 
-	__webpack_require__(215);
+	__webpack_require__(218);
 
 	/* React App Container Component */
 	var AppContainer = React.createClass ({displayName: "AppContainer",
@@ -62,7 +62,7 @@
 	      auth: { header: "Bearer SJKF9jf309" },
 	      logged_in_user: { name: "Frank" }, // Hardcoded for now
 	      oada_domain: null,
-	      cur_rx: __webpack_require__(217), // Hardcoded for now
+	      cur_rx: __webpack_require__(220), // Hardcoded for now
 	      sendState: '',
 	    };
 	    return ret;
@@ -33362,10 +33362,10 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	var React = __webpack_require__(4);
-	var leaflet = __webpack_require__(218);
+	var leaflet = __webpack_require__(170);
 	var _ = __webpack_require__(165);
 
-	__webpack_require__(219);
+	__webpack_require__(171);
 
 	/* React Map component */
 	module.exports = React.createClass({displayName: "module.exports",
@@ -33450,9 +33450,48 @@
 /* 170 */
 /***/ function(module, exports, __webpack_require__) {
 
+	module.exports = L;
+
+/***/ },
+/* 171 */
+/***/ function(module, exports, __webpack_require__) {
+
+	// style-loader: Adds some css to the DOM by adding a <style> tag
+
+	// load the styles
+	var content = __webpack_require__(172);
+	if(typeof content === 'string') content = [[module.id, content, '']];
+	// add the styles to the DOM
+	var update = __webpack_require__(164)(content, {});
+	if(content.locals) module.exports = content.locals;
+	// Hot Module Replacement
+	if(false) {
+		// When the styles change, update the <style> tags
+		if(!content.locals) {
+			module.hot.accept("!!./../../node_modules/css-loader/index.js!./map.css", function() {
+				var newContent = require("!!./../../node_modules/css-loader/index.js!./map.css");
+				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
+				update(newContent);
+			});
+		}
+		// When the module is disposed, remove the <style> tags
+		module.hot.dispose(function() { update(); });
+	}
+
+/***/ },
+/* 172 */
+/***/ function(module, exports, __webpack_require__) {
+
+	exports = module.exports = __webpack_require__(163)();
+	exports.push([module.id, "@media screen and (max-width: 700px) {\n  #map {\n    position: absolute;\n    top: 5%;\n    left: 0;\n    right: 0;\n    height: 50%;\n    z-index: -1;\n  }\n}\n\n@media screen and (min-width: 701px) {\n  #map {\n    position: absolute;\n    left: 0;\n    right: 0;\n    bottom: 0;\n    top: 0;\n    height: 50%;\n    float: left;\n    z-index: -1;\n  }\n}\n\n\n\n\n", ""]);
+
+/***/ },
+/* 173 */
+/***/ function(module, exports, __webpack_require__) {
+
 	var React = __webpack_require__(4);
 
-	__webpack_require__(171);
+	__webpack_require__(174);
 
 	module.exports = React.createClass({displayName: "module.exports",
 	  getDefaultProps: function() {
@@ -33490,13 +33529,13 @@
 
 
 /***/ },
-/* 171 */
+/* 174 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(172);
+	var content = __webpack_require__(175);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(164)(content, {});
@@ -33516,20 +33555,20 @@
 	}
 
 /***/ },
-/* 172 */
+/* 175 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(163)();
 	exports.push([module.id, "#nav {\n  width:100%;\n  height: 40px;\n}\n\n#sendState.sendstate_default {\n  color: black;\n}\n\n#sendState.sendstate_success {\n  color: green;\n}\n\n#sendState.sendstate_fail {\n  color: red;\n}\n", ""]);
 
 /***/ },
-/* 173 */
+/* 176 */
 /***/ function(module, exports, __webpack_require__) {
 
-	module.exports = __webpack_require__(174);
+	module.exports = __webpack_require__(177);
 
 /***/ },
-/* 174 */
+/* 177 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -33540,11 +33579,11 @@
 	 */
 	var ParseHeaders, Promise, XMLHttpRequestPromise, extend;
 
-	Promise = __webpack_require__(175);
+	Promise = __webpack_require__(178);
 
-	extend = __webpack_require__(210);
+	extend = __webpack_require__(213);
 
-	ParseHeaders = __webpack_require__(211);
+	ParseHeaders = __webpack_require__(214);
 
 
 	/*
@@ -33617,9 +33656,9 @@
 	        };
 	        _this._attachWindowUnload();
 	        xhr.open(options.method, options.url, options.async, options.username, options.password);
-	        if (options.data != null) {
-	          xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
-	        }
+	//        if (options.data != null) {
+	//          xhr.setRequestHeader('Content-Type', 'application/x-www-form-urlencoded; charset=UTF-8');
+	//        }
 	        _ref = options.headers;
 	        for (header in _ref) {
 	          value = _ref[header];
@@ -33750,7 +33789,7 @@
 
 
 /***/ },
-/* 175 */
+/* 178 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -33761,13 +33800,13 @@
 	    catch (e) {}
 	    return bluebird;
 	}
-	var bluebird = __webpack_require__(176)();
+	var bluebird = __webpack_require__(179)();
 	bluebird.noConflict = noConflict;
 	module.exports = bluebird;
 
 
 /***/ },
-/* 176 */
+/* 179 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {"use strict";
@@ -33778,18 +33817,18 @@
 	var reflect = function() {
 	    return new Promise.PromiseInspection(this._target());
 	};
-	var util = __webpack_require__(180);
-	var async = __webpack_require__(181);
-	var errors = __webpack_require__(178);
+	var util = __webpack_require__(183);
+	var async = __webpack_require__(184);
+	var errors = __webpack_require__(181);
 	var INTERNAL = function(){};
 	var APPLY = {};
 	var NEXT_FILTER = {e: null};
-	var tryConvertToPromise = __webpack_require__(184)(Promise, INTERNAL);
+	var tryConvertToPromise = __webpack_require__(187)(Promise, INTERNAL);
 	var PromiseArray =
-	    __webpack_require__(185)(Promise, INTERNAL, tryConvertToPromise);
-	var CapturedTrace = __webpack_require__(186)();
-	var CatchFilter = __webpack_require__(187)(NEXT_FILTER);
-	var PromiseResolver = __webpack_require__(188);
+	    __webpack_require__(188)(Promise, INTERNAL, tryConvertToPromise);
+	var CapturedTrace = __webpack_require__(189)();
+	var CatchFilter = __webpack_require__(190)(NEXT_FILTER);
+	var PromiseResolver = __webpack_require__(191);
 	var isArray = util.isArray;
 	var errorObj = util.errorObj;
 	var tryCatch0 = util.tryCatch0;
@@ -33804,7 +33843,7 @@
 	var originatesFromRejection = errors.originatesFromRejection;
 	var markAsOriginatingFromRejection = errors.markAsOriginatingFromRejection;
 	var canAttachTrace = errors.canAttachTrace;
-	var apiRejection = __webpack_require__(189)(Promise);
+	var apiRejection = __webpack_require__(192)(Promise);
 	var unhandledRejectionHandled;
 	var possiblyUnhandledRejection;
 
@@ -34712,10 +34751,10 @@
 	}
 
 	Promise._makeSelfResolutionError = makeSelfResolutionError;
-	__webpack_require__(190)(Promise, NEXT_FILTER, tryConvertToPromise);
-	__webpack_require__(191)(Promise);
-	__webpack_require__(192)(Promise);
-	__webpack_require__(193)(Promise, PromiseArray, tryConvertToPromise, INTERNAL);
+	__webpack_require__(193)(Promise, NEXT_FILTER, tryConvertToPromise);
+	__webpack_require__(194)(Promise);
+	__webpack_require__(195)(Promise);
+	__webpack_require__(196)(Promise, PromiseArray, tryConvertToPromise, INTERNAL);
 	Promise.RangeError = RangeError;
 	Promise.CancellationError = CancellationError;
 	Promise.TimeoutError = TimeoutError;
@@ -34728,23 +34767,23 @@
 	util.toFastProperties(Promise.prototype);
 	Promise.Promise = Promise;
 	CapturedTrace.setBounds(async.firstLineError, util.lastLineError);
-	__webpack_require__(194)(Promise);
-	__webpack_require__(195)(Promise, apiRejection, tryConvertToPromise);
-	__webpack_require__(177)(Promise, apiRejection, INTERNAL, tryConvertToPromise);
-	__webpack_require__(196)(Promise, PromiseArray, apiRejection, tryConvertToPromise, INTERNAL);
-	__webpack_require__(197)(Promise, INTERNAL);
-	__webpack_require__(198)(Promise, INTERNAL);
-	__webpack_require__(199)(Promise, PromiseArray, tryConvertToPromise);
-	__webpack_require__(200)(Promise, INTERNAL, tryConvertToPromise);
-	__webpack_require__(201)(Promise, PromiseArray, apiRejection, tryConvertToPromise, INTERNAL);
-	__webpack_require__(202)(Promise, PromiseArray);
-	__webpack_require__(203)(Promise);
-	__webpack_require__(204)(Promise, PromiseArray, apiRejection);
+	__webpack_require__(197)(Promise);
+	__webpack_require__(198)(Promise, apiRejection, tryConvertToPromise);
+	__webpack_require__(180)(Promise, apiRejection, INTERNAL, tryConvertToPromise);
+	__webpack_require__(199)(Promise, PromiseArray, apiRejection, tryConvertToPromise, INTERNAL);
+	__webpack_require__(200)(Promise, INTERNAL);
+	__webpack_require__(201)(Promise, INTERNAL);
+	__webpack_require__(202)(Promise, PromiseArray, tryConvertToPromise);
+	__webpack_require__(203)(Promise, INTERNAL, tryConvertToPromise);
+	__webpack_require__(204)(Promise, PromiseArray, apiRejection, tryConvertToPromise, INTERNAL);
 	__webpack_require__(205)(Promise, PromiseArray);
 	__webpack_require__(206)(Promise);
-	__webpack_require__(207)(Promise, INTERNAL);
-	__webpack_require__(208)(Promise, INTERNAL, tryConvertToPromise);
-	__webpack_require__(209)(Promise, INTERNAL);
+	__webpack_require__(207)(Promise, PromiseArray, apiRejection);
+	__webpack_require__(208)(Promise, PromiseArray);
+	__webpack_require__(209)(Promise);
+	__webpack_require__(210)(Promise, INTERNAL);
+	__webpack_require__(211)(Promise, INTERNAL, tryConvertToPromise);
+	__webpack_require__(212)(Promise, INTERNAL);
 
 	Promise.prototype = Promise.prototype;
 	return Promise;
@@ -34754,7 +34793,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ },
-/* 177 */
+/* 180 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -34762,10 +34801,10 @@
 	                          apiRejection,
 	                          INTERNAL,
 	                          tryConvertToPromise) {
-	var errors = __webpack_require__(178);
+	var errors = __webpack_require__(181);
 	var TypeError = errors.TypeError;
-	var deprecated = __webpack_require__(180).deprecated;
-	var util = __webpack_require__(180);
+	var deprecated = __webpack_require__(183).deprecated;
+	var util = __webpack_require__(183);
 	var errorObj = util.errorObj;
 	var tryCatch1 = util.tryCatch1;
 	var yieldHandlers = [];
@@ -34902,13 +34941,13 @@
 
 
 /***/ },
-/* 178 */
+/* 181 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var Objectfreeze = __webpack_require__(179).freeze;
-	var propertyIsWritable = __webpack_require__(179).propertyIsWritable;
-	var util = __webpack_require__(180);
+	var Objectfreeze = __webpack_require__(182).freeze;
+	var propertyIsWritable = __webpack_require__(182).propertyIsWritable;
+	var util = __webpack_require__(183);
 	var inherits = util.inherits;
 	var notEnumerableProp = util.notEnumerableProp;
 
@@ -35033,7 +35072,7 @@
 
 
 /***/ },
-/* 179 */
+/* 182 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var isES5 = (function(){
@@ -35111,11 +35150,11 @@
 
 
 /***/ },
-/* 180 */
+/* 183 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var es5 = __webpack_require__(179);
+	var es5 = __webpack_require__(182);
 	var haveGetters = (function(){
 	    try {
 	        var o = {};
@@ -35382,13 +35421,13 @@
 
 
 /***/ },
-/* 181 */
+/* 184 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {"use strict";
 	var firstLineError = new Error();
-	var schedule = __webpack_require__(182);
-	var Queue = __webpack_require__(183);
+	var schedule = __webpack_require__(185);
+	var Queue = __webpack_require__(186);
 	var _process = typeof process !== "undefined" ? process : undefined;
 
 	function Async() {
@@ -35494,7 +35533,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ },
-/* 182 */
+/* 185 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process, setImmediate) {"use strict";
@@ -35527,7 +35566,7 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2), __webpack_require__(3).setImmediate))
 
 /***/ },
-/* 183 */
+/* 186 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -35625,13 +35664,13 @@
 
 
 /***/ },
-/* 184 */
+/* 187 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	module.exports = function(Promise, INTERNAL) {
-	var util = __webpack_require__(180);
-	var canAttachTrace = __webpack_require__(178).canAttachTrace;
+	var util = __webpack_require__(183);
+	var canAttachTrace = __webpack_require__(181).canAttachTrace;
 	var errorObj = util.errorObj;
 	var isObject = util.isObject;
 
@@ -35741,13 +35780,13 @@
 
 
 /***/ },
-/* 185 */
+/* 188 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	module.exports = function(Promise, INTERNAL, tryConvertToPromise) {
-	var canAttachTrace = __webpack_require__(178).canAttachTrace;
-	var util = __webpack_require__(180);
+	var canAttachTrace = __webpack_require__(181).canAttachTrace;
+	var util = __webpack_require__(183);
 	var isArray = util.isArray;
 
 	function toResolutionValue(val) {
@@ -35899,14 +35938,14 @@
 
 
 /***/ },
-/* 186 */
+/* 189 */
 /***/ function(module, exports, __webpack_require__) {
 
 	/* WEBPACK VAR INJECTION */(function(process) {"use strict";
 	module.exports = function() {
-	var async = __webpack_require__(181);
-	var inherits = __webpack_require__(180).inherits;
-	var defineProperty = __webpack_require__(179).defineProperty;
+	var async = __webpack_require__(184);
+	var inherits = __webpack_require__(183).inherits;
+	var defineProperty = __webpack_require__(182).defineProperty;
 	var rtraceline = null;
 	var formatStack = null;
 
@@ -36280,16 +36319,16 @@
 	/* WEBPACK VAR INJECTION */}.call(exports, __webpack_require__(2)))
 
 /***/ },
-/* 187 */
+/* 190 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	module.exports = function(NEXT_FILTER) {
-	var util = __webpack_require__(180);
-	var errors = __webpack_require__(178);
+	var util = __webpack_require__(183);
+	var errors = __webpack_require__(181);
 	var tryCatch1 = util.tryCatch1;
 	var errorObj = util.errorObj;
-	var keys = __webpack_require__(179).keys;
+	var keys = __webpack_require__(182).keys;
 	var TypeError = errors.TypeError;
 
 	function CatchFilter(instances, callback, promise) {
@@ -36356,18 +36395,18 @@
 
 
 /***/ },
-/* 188 */
+/* 191 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var util = __webpack_require__(180);
+	var util = __webpack_require__(183);
 	var maybeWrapAsError = util.maybeWrapAsError;
-	var errors = __webpack_require__(178);
+	var errors = __webpack_require__(181);
 	var TimeoutError = errors.TimeoutError;
 	var OperationalError = errors.OperationalError;
-	var async = __webpack_require__(181);
+	var async = __webpack_require__(184);
 	var haveGetters = util.haveGetters;
-	var es5 = __webpack_require__(179);
+	var es5 = __webpack_require__(182);
 
 	function isUntypedError(obj) {
 	    return obj instanceof Error &&
@@ -36506,12 +36545,12 @@
 
 
 /***/ },
-/* 189 */
+/* 192 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	module.exports = function(Promise) {
-	var TypeError = __webpack_require__(178).TypeError;
+	var TypeError = __webpack_require__(181).TypeError;
 
 	function apiRejection(msg) {
 	    var error = new TypeError(msg);
@@ -36528,12 +36567,12 @@
 
 
 /***/ },
-/* 190 */
+/* 193 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	module.exports = function(Promise, NEXT_FILTER, tryConvertToPromise) {
-	var util = __webpack_require__(180);
+	var util = __webpack_require__(183);
 	var wrapsPrimitiveReceiver = util.wrapsPrimitiveReceiver;
 	var isPrimitive = util.isPrimitive;
 	var thrower = util.thrower;
@@ -36633,11 +36672,11 @@
 
 
 /***/ },
-/* 191 */
+/* 194 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
-	var util = __webpack_require__(180);
+	var util = __webpack_require__(183);
 	var isPrimitive = util.isPrimitive;
 	var wrapsPrimitiveReceiver = util.wrapsPrimitiveReceiver;
 
@@ -36693,7 +36732,7 @@
 
 
 /***/ },
-/* 192 */
+/* 195 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -36793,13 +36832,13 @@
 
 
 /***/ },
-/* 193 */
+/* 196 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	module.exports =
 	function(Promise, PromiseArray, tryConvertToPromise, INTERNAL) {
-	var util = __webpack_require__(180);
+	var util = __webpack_require__(183);
 	var canEvaluate = util.canEvaluate;
 	var tryCatch1 = util.tryCatch1;
 	var errorObj = util.errorObj;
@@ -36900,13 +36939,13 @@
 
 
 /***/ },
-/* 194 */
+/* 197 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	module.exports = function(Promise) {
-	var util = __webpack_require__(180);
-	var async = __webpack_require__(181);
+	var util = __webpack_require__(183);
+	var async = __webpack_require__(184);
 	var tryCatch2 = util.tryCatch2;
 	var tryCatch1 = util.tryCatch1;
 	var errorObj = util.errorObj;
@@ -36965,13 +37004,13 @@
 
 
 /***/ },
-/* 195 */
+/* 198 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	module.exports = function (Promise, apiRejection, tryConvertToPromise) {
-	    var TypeError = __webpack_require__(178).TypeError;
-	    var inherits = __webpack_require__(180).inherits;
+	    var TypeError = __webpack_require__(181).TypeError;
+	    var inherits = __webpack_require__(183).inherits;
 	    var PromiseInspection = Promise.PromiseInspection;
 
 	    function inspectionMapper(inspections) {
@@ -37157,7 +37196,7 @@
 
 
 /***/ },
-/* 196 */
+/* 199 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -37166,7 +37205,7 @@
 	                          apiRejection,
 	                          tryConvertToPromise,
 	                          INTERNAL) {
-	var util = __webpack_require__(180);
+	var util = __webpack_require__(183);
 	var tryCatch3 = util.tryCatch3;
 	var errorObj = util.errorObj;
 	var PENDING = {};
@@ -37291,15 +37330,15 @@
 
 
 /***/ },
-/* 197 */
+/* 200 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	module.exports = function(Promise, INTERNAL) {
-	var errors = __webpack_require__(178);
+	var errors = __webpack_require__(181);
 	var canAttachTrace = errors.canAttachTrace;
-	var async = __webpack_require__(181);
-	var util = __webpack_require__(180);
+	var async = __webpack_require__(184);
+	var util = __webpack_require__(183);
 	var CancellationError = errors.CancellationError;
 
 	Promise.prototype._cancel = function (reason) {
@@ -37351,19 +37390,19 @@
 
 
 /***/ },
-/* 198 */
+/* 201 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	module.exports = function(Promise, INTERNAL) {
 	var THIS = {};
-	var util = __webpack_require__(180);
-	var nodebackForPromise = __webpack_require__(188)
+	var util = __webpack_require__(183);
+	var nodebackForPromise = __webpack_require__(191)
 	    ._nodebackForPromise;
 	var withAppended = util.withAppended;
 	var maybeWrapAsError = util.maybeWrapAsError;
 	var canEvaluate = util.canEvaluate;
-	var TypeError = __webpack_require__(178).TypeError;
+	var TypeError = __webpack_require__(181).TypeError;
 	var defaultSuffix = "Async";
 	var defaultFilter = function(name, func) {
 	    return util.isIdentifier(name) &&
@@ -37667,15 +37706,15 @@
 
 
 /***/ },
-/* 199 */
+/* 202 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	module.exports = function(Promise, PromiseArray, tryConvertToPromise) {
-	var util = __webpack_require__(180);
-	var apiRejection = __webpack_require__(189)(Promise);
+	var util = __webpack_require__(183);
+	var apiRejection = __webpack_require__(192)(Promise);
 	var isObject = util.isObject;
-	var es5 = __webpack_require__(179);
+	var es5 = __webpack_require__(182);
 
 	function PropertiesPromiseArray(obj) {
 	    var keys = es5.keys(obj);
@@ -37752,13 +37791,13 @@
 
 
 /***/ },
-/* 200 */
+/* 203 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	module.exports = function(Promise, INTERNAL, tryConvertToPromise) {
-	var apiRejection = __webpack_require__(189)(Promise);
-	var isArray = __webpack_require__(180).isArray;
+	var apiRejection = __webpack_require__(192)(Promise);
+	var isArray = __webpack_require__(183).isArray;
 
 	var raceLater = function (promise) {
 	    return promise.then(function(array) {
@@ -37807,7 +37846,7 @@
 
 
 /***/ },
-/* 201 */
+/* 204 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -37816,7 +37855,7 @@
 	                          apiRejection,
 	                          tryConvertToPromise,
 	                          INTERNAL) {
-	var util = __webpack_require__(180);
+	var util = __webpack_require__(183);
 	var tryCatch4 = util.tryCatch4;
 	var tryCatch3 = util.tryCatch3;
 	var errorObj = util.errorObj;
@@ -37975,14 +38014,14 @@
 
 
 /***/ },
-/* 202 */
+/* 205 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	module.exports =
 	    function(Promise, PromiseArray) {
 	var PromiseInspection = Promise.PromiseInspection;
-	var util = __webpack_require__(180);
+	var util = __webpack_require__(183);
 
 	function SettledPromiseArray(values) {
 	    this.constructor$(values);
@@ -38022,7 +38061,7 @@
 
 
 /***/ },
-/* 203 */
+/* 206 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -38034,7 +38073,7 @@
 	}
 
 	module.exports = function(Promise) {
-	var util = __webpack_require__(180);
+	var util = __webpack_require__(183);
 	var canEvaluate = util.canEvaluate;
 	var isIdentifier = util.isIdentifier;
 
@@ -38128,15 +38167,15 @@
 
 
 /***/ },
-/* 204 */
+/* 207 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	module.exports =
 	function(Promise, PromiseArray, apiRejection) {
-	var util = __webpack_require__(180);
-	var RangeError = __webpack_require__(178).RangeError;
-	var AggregateError = __webpack_require__(178).AggregateError;
+	var util = __webpack_require__(183);
+	var RangeError = __webpack_require__(181).RangeError;
+	var AggregateError = __webpack_require__(181).AggregateError;
 	var isArray = util.isArray;
 
 
@@ -38264,14 +38303,14 @@
 
 
 /***/ },
-/* 205 */
+/* 208 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	module.exports = function(Promise, PromiseArray) {
-	var util = __webpack_require__(180);
-	var async = __webpack_require__(181);
-	var errors = __webpack_require__(178);
+	var util = __webpack_require__(183);
+	var async = __webpack_require__(184);
+	var errors = __webpack_require__(181);
 	var tryCatch1 = util.tryCatch1;
 	var errorObj = util.errorObj;
 
@@ -38347,7 +38386,7 @@
 
 
 /***/ },
-/* 206 */
+/* 209 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -38377,7 +38416,7 @@
 
 
 /***/ },
-/* 207 */
+/* 210 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -38395,12 +38434,12 @@
 
 
 /***/ },
-/* 208 */
+/* 211 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
 	module.exports = function(Promise, INTERNAL, tryConvertToPromise) {
-	var errors = __webpack_require__(178);
+	var errors = __webpack_require__(181);
 	var TimeoutError = Promise.TimeoutError;
 
 	var afterTimeout = function (promise, message) {
@@ -38476,7 +38515,7 @@
 
 
 /***/ },
-/* 209 */
+/* 212 */
 /***/ function(module, exports, __webpack_require__) {
 
 	"use strict";
@@ -38494,7 +38533,7 @@
 
 
 /***/ },
-/* 210 */
+/* 213 */
 /***/ function(module, exports, __webpack_require__) {
 
 	var hasOwn = Object.prototype.hasOwnProperty;
@@ -38589,11 +38628,11 @@
 
 
 /***/ },
-/* 211 */
+/* 214 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var trim = __webpack_require__(212)
-	  , forEach = __webpack_require__(213)
+	var trim = __webpack_require__(215)
+	  , forEach = __webpack_require__(216)
 	  , isArray = function(arg) {
 	      return Object.prototype.toString.call(arg) === '[object Array]';
 	    }
@@ -38625,7 +38664,7 @@
 	}
 
 /***/ },
-/* 212 */
+/* 215 */
 /***/ function(module, exports, __webpack_require__) {
 
 	
@@ -38645,10 +38684,10 @@
 
 
 /***/ },
-/* 213 */
+/* 216 */
 /***/ function(module, exports, __webpack_require__) {
 
-	var isFunction = __webpack_require__(214)
+	var isFunction = __webpack_require__(217)
 
 	module.exports = forEach
 
@@ -38697,7 +38736,7 @@
 
 
 /***/ },
-/* 214 */
+/* 217 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = isFunction
@@ -38718,13 +38757,13 @@
 
 
 /***/ },
-/* 215 */
+/* 218 */
 /***/ function(module, exports, __webpack_require__) {
 
 	// style-loader: Adds some css to the DOM by adding a <style> tag
 
 	// load the styles
-	var content = __webpack_require__(216);
+	var content = __webpack_require__(219);
 	if(typeof content === 'string') content = [[module.id, content, '']];
 	// add the styles to the DOM
 	var update = __webpack_require__(164)(content, {});
@@ -38744,57 +38783,18 @@
 	}
 
 /***/ },
-/* 216 */
+/* 219 */
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(163)();
 	exports.push([module.id, ".app-container {\n  width: 100%;\n}\n", ""]);
 
 /***/ },
-/* 217 */
+/* 220 */
 /***/ function(module, exports, __webpack_require__) {
 
 	module.exports = {"name":"Ault_Farms_Keim_60.orx","namespace":{"oada.planting.prescription":{"src":"https://github.com/oada/oada-docs/formats/planting.prescription.js","population":{"units":"seeds/acre"}}},"zones":{"1":{"population":{"value":30500}},"2":{"population":{"value":34000}},"3":{"population":{"value":35000}},"4":{"population":{"value":36000}},"default":{"population":{"value":32000}}},"geojson":{"type":"FeatureCollection","features":[{"type":"Feature","geometry":{"bbox":[-86.192597,41.001627,-86.192594,41.001630000000006],"type":"Polygon","coordinates":[[[-86.192594,41.001627],[-86.192597,41.001630000000006],[-86.19259500000001,41.001629],[-86.192594,41.001627]]]},"properties":{"zone":"1"}},{"type":"Feature","geometry":{"bbox":[-86.197354,40.999404000000006,-86.19539900000001,41.001938],"type":"Polygon","coordinates":[[[-86.19707100000001,40.999404000000006],[-86.197108,40.99949],[-86.197354,40.999709],[-86.197336,41.001938],[-86.196056,41.001934000000006],[-86.196014,41.001866],[-86.195969,41.001692000000006],[-86.19584,41.001552000000004],[-86.19584300000001,41.001418],[-86.195904,41.001298000000006],[-86.196061,41.001092],[-86.196053,41.000994000000006],[-86.195914,41.0009],[-86.19565700000001,41.000822],[-86.195541,41.000765],[-86.195437,41.000692],[-86.19539900000001,41.000627],[-86.1954,41.000594],[-86.195453,41.000496000000005],[-86.195617,41.000341000000006],[-86.195853,41.000188],[-86.19607500000001,41.000086],[-86.19618200000001,41.000001000000005],[-86.19632700000001,40.999555],[-86.19640600000001,40.99947],[-86.196482,40.99944],[-86.196596,40.999427000000004],[-86.196848,40.999431],[-86.19707100000001,40.999404000000006]]]},"properties":{"zone":"1"}},{"type":"Feature","geometry":{"bbox":[-86.19735700000001,40.999277,-86.19707100000001,40.999709],"type":"Polygon","coordinates":[[[-86.19735700000001,40.999277],[-86.197355,40.999549],[-86.197354,40.999709],[-86.197108,40.99949],[-86.19707100000001,40.999404000000006],[-86.19735700000001,40.999277]]]},"properties":{"zone":"2"}},{"type":"Feature","geometry":{"bbox":[-86.19491500000001,40.997046000000005,-86.192369,41.001431000000004],"type":"Polygon","coordinates":[[[-86.192673,40.997046000000005],[-86.192836,40.997059],[-86.192908,40.997093],[-86.192958,40.997149],[-86.19296100000001,40.997310000000006],[-86.192768,40.997623000000004],[-86.19275300000001,40.997688000000004],[-86.192777,40.997751],[-86.192886,40.997819],[-86.19322600000001,40.99794],[-86.193454,40.998059000000005],[-86.19357600000001,40.998098000000006],[-86.193599,40.998124000000004],[-86.193599,40.998189],[-86.19350100000001,40.998249],[-86.19292300000001,40.998255],[-86.192839,40.998274],[-86.19280400000001,40.998298000000005],[-86.19278800000001,40.99833],[-86.19279800000001,40.998387],[-86.192942,40.998543000000005],[-86.193099,40.998935],[-86.193201,40.999118],[-86.19335600000001,40.999502],[-86.193483,40.999673],[-86.19368,40.999807000000004],[-86.194162,41.000001000000005],[-86.194423,41.000087],[-86.194686,41.000240000000005],[-86.19481,41.000334],[-86.19486500000001,41.000387],[-86.19491500000001,41.000484],[-86.194894,41.000549],[-86.194832,41.000602],[-86.19475200000001,41.000637000000005],[-86.194629,41.000662000000005],[-86.19436400000001,41.000678],[-86.19399,41.000653],[-86.193864,41.000682000000005],[-86.19378400000001,41.000764000000004],[-86.19377700000001,41.000888],[-86.19383900000001,41.001022000000006],[-86.19413800000001,41.001272],[-86.19413300000001,41.001331],[-86.193976,41.001407],[-86.193808,41.001431000000004],[-86.193555,41.001394000000005],[-86.193425,41.001348],[-86.193263,41.001250000000006],[-86.193109,41.001121000000005],[-86.19309200000001,41.000922],[-86.19313600000001,41.000766000000006],[-86.19314800000001,41.000638],[-86.19311900000001,41.000536000000004],[-86.19289400000001,41.000278],[-86.19251100000001,40.999939000000005],[-86.19250100000001,40.999352],[-86.19251700000001,40.999324],[-86.192712,40.999101],[-86.19275,40.999],[-86.19274200000001,40.998936],[-86.192676,40.99889],[-86.19255100000001,40.99886],[-86.19239300000001,40.998849],[-86.192369,40.997151],[-86.192397,40.997142000000004],[-86.192498,40.997082000000006],[-86.192673,40.997046000000005]]]},"properties":{"zone":"default"}},{"type":"Feature","geometry":{"bbox":[-86.19738000000001,40.996143000000004,-86.19235400000001,40.999357],"type":"Polygon","coordinates":[[[-86.19235400000001,40.996143000000004],[-86.194287,40.99615],[-86.19584300000001,40.99615],[-86.195847,40.996939000000005],[-86.197131,40.996948],[-86.197139,40.996231],[-86.19738000000001,40.996467],[-86.197366,40.998208000000005],[-86.197298,40.998269],[-86.197269,40.998333],[-86.19720600000001,40.998664000000005],[-86.197094,40.998799000000005],[-86.196989,40.998855000000006],[-86.196899,40.998851],[-86.196735,40.99879],[-86.19664300000001,40.998783],[-86.196657,40.998661000000006],[-86.196236,40.998532000000004],[-86.195964,40.998507000000004],[-86.195867,40.999033000000004],[-86.196003,40.999034],[-86.196155,40.998978],[-86.196262,40.998864000000005],[-86.19650200000001,40.998829],[-86.19641,40.998876],[-86.196325,40.998888],[-86.196213,40.998942],[-86.196089,40.999039],[-86.196008,40.999069000000006],[-86.19591600000001,40.999073],[-86.19555100000001,40.999043],[-86.19541500000001,40.999048],[-86.195273,40.999132],[-86.19506600000001,40.999305],[-86.194984,40.999342000000006],[-86.194896,40.999357],[-86.19480700000001,40.999353],[-86.194726,40.999329],[-86.194542,40.999186],[-86.19447000000001,40.99915],[-86.194305,40.999141],[-86.194052,40.99909],[-86.193966,40.999022000000004],[-86.19389000000001,40.998872000000006],[-86.19382200000001,40.998827000000006],[-86.19365300000001,40.998835],[-86.19341,40.998913],[-86.193099,40.998935],[-86.192942,40.998543000000005],[-86.19279800000001,40.998387],[-86.19278800000001,40.99833],[-86.19280400000001,40.998298000000005],[-86.192839,40.998274],[-86.19292300000001,40.998255],[-86.19350100000001,40.998249],[-86.193599,40.998189],[-86.193599,40.998124000000004],[-86.19357600000001,40.998098000000006],[-86.193454,40.998059000000005],[-86.19322600000001,40.99794],[-86.192886,40.997819],[-86.192777,40.997751],[-86.19275300000001,40.997688000000004],[-86.192768,40.997623000000004],[-86.19296100000001,40.997310000000006],[-86.192958,40.997149],[-86.192908,40.997093],[-86.192836,40.997059],[-86.192673,40.997046000000005],[-86.192498,40.997082000000006],[-86.19245000000001,40.997026000000005],[-86.192451,40.996959000000004],[-86.192515,40.996906],[-86.19269700000001,40.996809000000006],[-86.192806,40.996711000000005],[-86.19281500000001,40.996648],[-86.19272500000001,40.996591],[-86.192632,40.996584000000006],[-86.19254500000001,40.996596000000004],[-86.192362,40.996684],[-86.19235400000001,40.996143000000004]]]},"properties":{"zone":"3"}},{"type":"Feature","geometry":{"bbox":[-86.197382,40.996149,-86.197139,40.996467],"type":"Polygon","coordinates":[[[-86.197382,40.996149],[-86.19738000000001,40.996467],[-86.197139,40.996231],[-86.19714,40.996149],[-86.197382,40.996149]]]},"properties":{"zone":"default"}},{"type":"Feature","geometry":{"bbox":[-86.19275,40.998849,-86.19239300000001,40.999352],"type":"Polygon","coordinates":[[[-86.19239300000001,40.998849],[-86.19255100000001,40.99886],[-86.192676,40.99889],[-86.19274200000001,40.998936],[-86.19275,40.999],[-86.192712,40.999101],[-86.19251700000001,40.999324],[-86.19250100000001,40.999352],[-86.192498,40.999181],[-86.1924,40.999115],[-86.19239300000001,40.998849]]]},"properties":{"zone":"4"}},{"type":"Feature","geometry":{"bbox":[-86.197366,40.998208000000005,-86.19251100000001,41.001934000000006],"type":"Polygon","coordinates":[[[-86.197366,40.998208000000005],[-86.19736300000001,40.998617],[-86.19735700000001,40.999277],[-86.19707100000001,40.999404000000006],[-86.196848,40.999431],[-86.196596,40.999427000000004],[-86.196482,40.99944],[-86.19640600000001,40.99947],[-86.19632700000001,40.999555],[-86.19618200000001,41.000001000000005],[-86.19607500000001,41.000086],[-86.195853,41.000188],[-86.195617,41.000341000000006],[-86.195453,41.000496000000005],[-86.1954,41.000594],[-86.19539900000001,41.000627],[-86.195437,41.000692],[-86.195541,41.000765],[-86.19565700000001,41.000822],[-86.195914,41.0009],[-86.196053,41.000994000000006],[-86.196061,41.001092],[-86.195904,41.001298000000006],[-86.19584300000001,41.001418],[-86.19584,41.001552000000004],[-86.195969,41.001692000000006],[-86.196014,41.001866],[-86.196056,41.001934000000006],[-86.19463900000001,41.00193],[-86.193703,41.001889000000006],[-86.193082,41.001838],[-86.192594,41.001627],[-86.192525,41.000714],[-86.19251100000001,40.999939000000005],[-86.19289400000001,41.000278],[-86.19311900000001,41.000536000000004],[-86.19314800000001,41.000638],[-86.19313600000001,41.000766000000006],[-86.19309200000001,41.000922],[-86.193109,41.001121000000005],[-86.193263,41.001250000000006],[-86.193425,41.001348],[-86.193555,41.001394000000005],[-86.193808,41.001431000000004],[-86.193976,41.001407],[-86.19413300000001,41.001331],[-86.19413800000001,41.001272],[-86.19383900000001,41.001022000000006],[-86.19377700000001,41.000888],[-86.19378400000001,41.000764000000004],[-86.193864,41.000682000000005],[-86.19399,41.000653],[-86.19436400000001,41.000678],[-86.194629,41.000662000000005],[-86.19475200000001,41.000637000000005],[-86.194832,41.000602],[-86.194894,41.000549],[-86.19491500000001,41.000484],[-86.19486500000001,41.000387],[-86.19481,41.000334],[-86.194686,41.000240000000005],[-86.194423,41.000087],[-86.194162,41.000001000000005],[-86.19368,40.999807000000004],[-86.193483,40.999673],[-86.19335600000001,40.999502],[-86.193201,40.999118],[-86.193099,40.998935],[-86.19341,40.998913],[-86.19365300000001,40.998835],[-86.19382200000001,40.998827000000006],[-86.19389000000001,40.998872000000006],[-86.193966,40.999022000000004],[-86.194052,40.99909],[-86.194305,40.999141],[-86.19447000000001,40.99915],[-86.194542,40.999186],[-86.194726,40.999329],[-86.19480700000001,40.999353],[-86.194896,40.999357],[-86.194984,40.999342000000006],[-86.19506600000001,40.999305],[-86.195273,40.999132],[-86.19541500000001,40.999048],[-86.19555100000001,40.999043],[-86.19591600000001,40.999073],[-86.196008,40.999069000000006],[-86.196089,40.999039],[-86.196213,40.998942],[-86.196325,40.998888],[-86.19641,40.998876],[-86.19650200000001,40.998829],[-86.19664,40.998809],[-86.19664300000001,40.998783],[-86.19664900000001,40.998782000000006],[-86.196735,40.99879],[-86.196899,40.998851],[-86.196989,40.998855000000006],[-86.197094,40.998799000000005],[-86.19720600000001,40.998664000000005],[-86.197269,40.998333],[-86.197298,40.998269],[-86.197366,40.998208000000005]]]},"properties":{"zone":"4"}},{"type":"Feature","geometry":{"bbox":[-86.19281500000001,40.996584000000006,-86.192362,40.997151],"type":"Polygon","coordinates":[[[-86.192632,40.996584000000006],[-86.19272500000001,40.996591],[-86.19281500000001,40.996648],[-86.192806,40.996711000000005],[-86.19269700000001,40.996809000000006],[-86.192515,40.996906],[-86.192451,40.996959000000004],[-86.19245000000001,40.997026000000005],[-86.192498,40.997082000000006],[-86.192397,40.997142000000004],[-86.192369,40.997151],[-86.192362,40.996684],[-86.19254500000001,40.996596000000004],[-86.192632,40.996584000000006]]]},"properties":{"zone":"4"}}]}};
 
-
-/***/ },
-/* 218 */
-/***/ function(module, exports, __webpack_require__) {
-
-	module.exports = L;
-
-/***/ },
-/* 219 */
-/***/ function(module, exports, __webpack_require__) {
-
-	// style-loader: Adds some css to the DOM by adding a <style> tag
-
-	// load the styles
-	var content = __webpack_require__(220);
-	if(typeof content === 'string') content = [[module.id, content, '']];
-	// add the styles to the DOM
-	var update = __webpack_require__(164)(content, {});
-	if(content.locals) module.exports = content.locals;
-	// Hot Module Replacement
-	if(false) {
-		// When the styles change, update the <style> tags
-		if(!content.locals) {
-			module.hot.accept("!!./../../node_modules/css-loader/index.js!./map.css", function() {
-				var newContent = require("!!./../../node_modules/css-loader/index.js!./map.css");
-				if(typeof newContent === 'string') newContent = [[module.id, newContent, '']];
-				update(newContent);
-			});
-		}
-		// When the module is disposed, remove the <style> tags
-		module.hot.dispose(function() { update(); });
-	}
-
-/***/ },
-/* 220 */
-/***/ function(module, exports, __webpack_require__) {
-
-	exports = module.exports = __webpack_require__(163)();
-	exports.push([module.id, "@media screen and (max-width: 700px) {\n  #map {\n    position: absolute;\n    top: 5%;\n    left: 0;\n    right: 0;\n    height: 50%;\n    z-index: -1;\n  }\n}\n\n@media screen and (min-width: 701px) {\n  #map {\n    position: absolute;\n    left: 0;\n    right: 0;\n    bottom: 0;\n    top: 0;\n    height: 50%;\n    float: left;\n    z-index: -1;\n  }\n}\n\n\n\n\n", ""]);
 
 /***/ }
 /******/ ]);
