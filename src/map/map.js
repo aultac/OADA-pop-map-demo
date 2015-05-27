@@ -9,7 +9,7 @@ module.exports = React.createClass({
   createMap: function(element, geojson) {
     //TODO: Figure out what this is doing and setup with our own open street map
     var orx = this.props.data;
-    var tiles = leaflet.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+    var tiles = leaflet.tileLayer('http://otile1.mqcdn.com/tiles/1.0.0/sat/{z}/{x}/{y}.png', {
       attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
     });
     var geomap = leaflet.geoJson(geojson, {
@@ -27,7 +27,7 @@ module.exports = React.createClass({
     map.fitBounds(geomap.getBounds());
     return map;
   },
-  
+
   getInitialState: function() {
     return null;
   },
@@ -41,7 +41,7 @@ module.exports = React.createClass({
       this.map = this.createMap(this.getDOMNode(), geojson);
     }
   },
-  
+
   render: function() {
     return (<div id="map"></div>);
   }
