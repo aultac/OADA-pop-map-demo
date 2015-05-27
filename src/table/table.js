@@ -1,5 +1,5 @@
 var React = require('react');
-var ZoneTableRow = require('./zonetablerow.js');
+var ZoneTableRow = require('./zonestablerow.js');
 var _ = require('lodash');
 
 require('./table.css');
@@ -11,6 +11,7 @@ module.exports = React.createClass({
   },
   
   render: function() {
+    console.log('rendering table...');
     var orxData = this.props.data;
     var zones = [];
     var length = _.size(orxData.zones);
@@ -27,16 +28,13 @@ module.exports = React.createClass({
     }.bind(this));
     
     return (
-      <div>
-        <div>
-          <h3>Zone</h3>
-          <h3>Population</h3>
-          <br />
-        </div>
-        <div>
-          {rows}
-        </div>
-      </div>
+      <table id="zonestable">
+        <tr>
+          <th>Zone</th>
+          <th>Population</th>
+        </tr>
+        {rows}
+      </table>
     );
   }
 });
