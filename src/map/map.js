@@ -10,7 +10,7 @@ module.exports = React.createClass({
     //TODO: Figure out what this is doing and setup with our own open street map
     var orx = this.props.data;
     var tiles = leaflet.tileLayer('http://otile1.mqcdn.com/tiles/1.0.0/sat/{z}/{x}/{y}.png', {
-      attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
+      attribution: 'Portions Courtesy NASA/JPL-Caltech and U.S. Depart. of Agriculture, Farm Service Agency'
     });
     var geomap = leaflet.geoJson(geojson, {
       //TODO: Should change the feature properties to be the population and zone number -- show this in the pop-up instead of the "description"
