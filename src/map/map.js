@@ -9,8 +9,8 @@ module.exports = React.createClass({
   createMap: function(element, geojson) {
     //TODO: Figure out what this is doing and setup with our own open street map
     var orx = this.props.data;
-    var tiles = leaflet.tileLayer('https://{s}.tile.osm.org/{z}/{x}/{y}.png', {
-      attribution: '&copy; <a href="https://osm.org/copyright">OpenStreetMap</a> contributors'
+    var tiles = leaflet.tileLayer('http://{s}.tile.osm.org/{z}/{x}/{y}.png', {
+      attribution: '&copy; <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
     });
     var geomap = leaflet.geoJson(geojson, {
       //TODO: change the colors to be randomly separated and updated based on the # of features
