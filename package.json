@@ -22,7 +22,9 @@
   "homepage": "https://github.com/jlwatkins/OADA-pop-map-demo",
   "dependencies": {
     "bluebird": "^2.9.26",
+    "chroma-js": "^0.7.4",
     "css-loader": "^0.14.3",
+    "json-loader": "^0.5.2",
     "jsx-loader": "^0.13.2",
     "lodash": "^3.9.3",
     "react": "^0.13.3",
