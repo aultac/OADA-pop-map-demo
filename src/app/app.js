@@ -21,6 +21,10 @@ var AppContainer = React.createClass ({
     };
     return ret;
   },
+
+  componentDidMount: function () {
+    document.getElementById("loading").style.display = "none";
+  },
      
   tableValueChanged: function(zone, updatedValue) {
     var new_rx = this.state.cur_rx;
