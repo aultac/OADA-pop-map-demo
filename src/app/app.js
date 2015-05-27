@@ -32,9 +32,7 @@ var AppContainer = React.createClass ({
   render: function () {
     return (
       <div>
-        <div className="map">
-          <Map ref='myMap' data={this.state.cur_rx} />
-        </div>
+        <Map ref='myMap' data={this.state.cur_rx} />
       </div>
     );
   },

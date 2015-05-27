@@ -43,7 +43,7 @@ module.exports = React.createClass({
   },
   
   render: function() {
-    return (<div className="map"></div>);
+    return (<div id="map"></div>);
   }
 });
 

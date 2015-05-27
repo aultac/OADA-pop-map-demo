@@ -78,9 +78,7 @@
 	  render: function () {
 	    return (
 	      React.createElement("div", null, 
-	        React.createElement("div", {className: "map"}, 
-	          React.createElement(Map, {ref: "myMap", data: this.state.cur_rx})
-	        )
+	        React.createElement(Map, {ref: "myMap", data: this.state.cur_rx})
 	      )
 	    );
 	  },
@@ -33171,7 +33169,7 @@
 	  },
 	  
 	  render: function() {
-	    return (React.createElement("div", {className: "map"}));
+	    return (React.createElement("div", {id: "map"}));
 	  }
 	});
 
@@ -33214,7 +33212,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(163)();
-	exports.push([module.id, ".map {\n  position: absolute;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  top: 0;\n  height: 100px\n  width: 90%;\n  float: left;\n  z-index: -1;\n}\n\n", ""]);
+	exports.push([module.id, "#map {\n  position: absolute;\n  left: 0;\n  right: 0;\n  bottom: 0;\n  top: 0;\n  height: 150%;\n  float: left;\n  z-index: -1;\n}\n\n\n", ""]);
 
 /***/ },
 /* 169 */
@@ -38561,7 +38559,7 @@
 /***/ function(module, exports, __webpack_require__) {
 
 	exports = module.exports = __webpack_require__(163)();
-	exports.push([module.id, ".app-container {\n  width: 100%;\n  height: 100%;\n}\n", ""]);
+	exports.push([module.id, ".app-container {\n  width: 100%;\n}\n", ""]);
 
 /***/ },
 /* 215 */
