@@ -35,9 +35,9 @@ var AppContainer = React.createClass ({
         <div className="map">
           <Map ref='myMap' data={this.state.cur_rx} />
         </div>
-        <div className="table">
-          <Table ref='myTable' data={this.state.cur_rx} onTableChange={this.tableValueChanged}/>
-        </div>
+        //<div className="table">
+        //  <Table ref='myTable' data={this.state.cur_rx} onTableChange={this.tableValueChanged}/>
+        //</div>
       </div>
     );
   },
