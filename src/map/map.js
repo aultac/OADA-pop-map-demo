@@ -1,6 +1,7 @@
 var React = require('react');
 var leaflet = require('leaflet');
 var _ = require('lodash');
+var chroma = require('chroma-js');
 
 require('./map.css');
 
@@ -14,6 +15,17 @@ module.exports = React.createClass({
     var tiles = leaflet.tileLayer('http://otile1.mqcdn.com/tiles/1.0.0/sat/{z}/{x}/{y}.png', {
       attribution: 'Portions Courtesy NASA/JPL-Caltech and U.S. Depart. of Agriculture, Farm Service Agency'
     });
+
+    //Setup a color scale for polygon colors
+    var colorScale = chroma.scale(['white', 'green']);
+    var minPop = _.min(orx.zones, function(zone){
+        return zone.population.value;
+      }).population.value;
+    var maxPop = _.max(orx.zones, function(zone){
+        return zone.population.value;
+      }).population.value;
+    var popRange = maxPop - minPop;
+
     var geomap = leaflet.geoJson(geojson, {
       //TODO: Should change the feature properties to be the population and zone number -- show this in the pop-up instead of the "description"
       onEachFeature: function (feature, layer) {
@@ -22,39 +34,16 @@ module.exports = React.createClass({
         feature_layers.push({ zone: zone, population: pop, layer: layer});
         layer.bindPopup("Zone: " + zone + " with Pop: " + pop);
       },
-      // TODO: This is pretty hacky. Auto generate colors from zone number ?
+      // TODO: Recreate map with population zones change value.
       style: function(feature) {
         var props = {};
-        switch(feature.properties.zone) {
-          case "default":
-            props.color = '#FFA07A';
-          break;
-
-          case "1":
-            props.color = '#FF8C00';
-          break;
-
-          case "2":
-            props.color = '#87CEEB';
-          break;
-
-          case "3":
-            props.color = '#008000';
-          break;
-
-          case "4":
-            props.color = '#8B4513';
-          break;
-
-          case "5":
-            props.color = '#8B0000';
-          break;
-
-          case "6":
-            props.color = '#808080';
-          break;
+        //Get a value between 0-1 for the color scale
+        var pop = orx.zones[feature.properties.zone].population.value;
+        var colorValue = pop - minPop;
+        if (colorValue != 0) {
+          colorValue = colorValue / popRange; //0-1 range
         }
-
+        props.color = colorScale(colorValue).brighten().hex();
         return props;
       }
     });
